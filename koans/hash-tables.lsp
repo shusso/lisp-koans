@@ -20,28 +20,28 @@
     "make hash table with make-hash-table"
   (let ((my-hash-table))
     (setf my-hash-table (make-hash-table))
-    (true-or-false? ___ (typep my-hash-table 'hash-table))
-    (true-or-false? ___  (hash-table-p my-hash-table))
-    (true-or-false? ___  (hash-table-p (make-array '(3 3 3))))
-    (assert-equal ___ (hash-table-count my-hash-table))))
+    (true-or-false? t (typep my-hash-table 'hash-table))
+    (true-or-false? t  (hash-table-p my-hash-table))
+    (true-or-false? nil  (hash-table-p (make-array '(3 3 3))))
+    (assert-equal 0 (hash-table-count my-hash-table))))
 
 
 (define-test test-hash-table-access
     "gethash is for accessing hash tables"
   (let ((table-of-cube-roots (make-hash-table)))
 
-  "assign the key-value pair 1->'uno'"
-  (setf (gethash 1 table-of-cube-roots) "uno")
-  (assert-equal "uno" (gethash 1 table-of-cube-roots))
-  (assert-equal 1 (hash-table-count table-of-cube-roots))
+    "assign the key-value pair 1->'uno'"
+    (setf (gethash 1 table-of-cube-roots) "uno")
+    (assert-equal "uno" (gethash 1 table-of-cube-roots))
+    (assert-equal 1 (hash-table-count table-of-cube-roots))
 
-  (setf (gethash 8 table-of-cube-roots) 2)
-  (setf (gethash -3 table-of-cube-roots) -27)
-  (assert-equal ___ (gethash -3 table-of-cube-roots))
-  (assert-equal ___ (hash-table-count table-of-cube-roots))
+    (setf (gethash 8 table-of-cube-roots) 2)
+    (setf (gethash -3 table-of-cube-roots) -27)
+    (assert-equal -27 (gethash -3 table-of-cube-roots))
+    (assert-equal 3 (hash-table-count table-of-cube-roots))
 
-  "accessing unset keys returns nil"
-  (assert-equal ___ (gethash 125 table-of-cube-roots))))
+    "accessing unset keys returns nil"
+    (assert-equal nil (gethash 125 table-of-cube-roots))))
 
 
 (define-test test-hash-key-equality
